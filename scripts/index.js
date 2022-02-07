@@ -2,7 +2,6 @@ let api = "https://www.themealdb.com/api/json/v1/1/filter.php?a=Indian";
 
 // let main = document.querySelector(".menu").addEventListener("click",getData);
 
-
 //Get inital Data in Console
 getData()
 
@@ -58,43 +57,50 @@ function appendData(data) {
 
         var div = document.createElement("div");
 
-        let img = document.createElement("img")
-        img.src = d.strMealThumb
-       
-        let p1 = document.createElement("p")
-        p1.textContent = d.strMeal
-
-        let p2 = document.createElement("p")
-        p2.textContent = "Rs -  " + 250
-        
-        // "INR" + price(min, max);
-
-        let btn = document.createElement("button")
-        btn.setAttribute("id",("addtocart"))
-        btn.textContent = "Add To Cart"
-        btn.onclick = function(event){
-            console.log(div)
-            addtocart(data)
-        }
-
-        function addtocart(data){
-            let cart = JSON.parse(localStorage.getItem("cart"));
-    
+        function addtocart(div){
+            // let cart = JSON.parse(localStorage.getItem("cart"));
+            
             cart.push(d)
-    
+            
             localStorage.setItem("cart",JSON.stringify(cart))
             cartCount(cart)
         }
 
+        let img = document.createElement("img");
+        img.src = d.strMealThumb
+
+        let p1 = document.createElement("p");
+        p1.textContent = d.strMeal
+
+        let p2 = document.createElement("p");
+        p2.textContent = Math.floor(Math.random()*(500-100)+100) ;
+
+        // "INR" + price(min, max);
+        
+        
+        let btn = document.createElement("button");
+        btn.setAttribute("id","addtocart");
+        btn.textContent = "Add To Cart"
+        
+        btn.onclick = function(event){
+            addtocart(div)
+        }
+        
+       
+        
         div.append(img,p1,p2,btn)
         container.append(div)
 
     })
-    
-
-    
+       
 }
 
+var box = [];
+
+
+function addtocart(div){
+    box.push(div);
+}
 
 
 
